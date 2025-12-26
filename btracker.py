@@ -87,7 +87,7 @@ st.subheader("Filters")
 if df.empty:
     st.info("No data yet.")
     st.stop()
-df["month"] = df['date'].df.strftime("%Y-%m")
+df["month"] = df['date'].dt.strftime("%Y-%m")
 
 month_filter = st.selectbox(
     "Month",
@@ -131,7 +131,7 @@ st.subheader("Expense by Category")
 chart_df = df.copy()
 if month_filter != "All":
     chart_df = chart_df[chart_df["month"] == month_filter]
-expenses = chart_df[filtered_df["type"] == "Expense"]
+expenses = chart_df[chart_df["type"] == "Expense"]
 
 if not expenses.empty:
     cat_sum = expenses.groupby("category")["amount"].sum()

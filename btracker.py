@@ -29,9 +29,6 @@ CATEGORIES = [
     "Other"
 ]
 
-
-
-
 # ---------------- DATA FUNCTIONS ----------------
 def load_data():
     if os.path.exists(DATA_FILE):
@@ -80,8 +77,10 @@ with st.form("transaction form", clear_on_submit=True):
         df = pd.concat([df, new_row], ignore_index=True)
         save_data(df)
         st.success("Transaction saved!")
+    
 
 # -------- FILTERS --------
+
 st.subheader("Filters")
 
 if df.empty:
@@ -109,6 +108,7 @@ if category_filter != "All":
 
 
 # -------- SUMMARY --------
+
 st.subheader("Summary")
 
 income = filtered_df[filtered_df["type"] == "Income"]["amount"].sum()
@@ -123,8 +123,6 @@ col3.metric("Balance", f"${balance: .2f}")
 
 # -------- CHARTS (FAST) --------
 st.subheader("Expense by Category")
-
-
 
 # Create a separate DataFrame for chart that only filters by month
 

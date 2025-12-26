@@ -49,9 +49,9 @@ if not df.empty:
     df["date"] = pd.to_datetime(df["date"], errors = "coerce")
     df = df.dropna(subset=["date"])
 
-if not pd.api.types.is_datetime64_any_dtype(df["date"]):
-    st.error("Date column is not in datetime format.")
-    st.stop()
+    if not pd.api.types.is_datetime64_any_dtype(df["date"]):
+        st.error("Date column is not in datetime format.")
+        st.stop()
 
 
 
